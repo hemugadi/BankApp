@@ -1,0 +1,35 @@
+
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Bank Search</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-searchbar [(ngModel)]="searchTerm" (ionChange)="searchChanged($event)"></ion-searchbar>
+
+  <ion-item>
+    <ion-label>Select Searchtype</ion-label>
+    <ion-select [(ngModel)]="type" (ionChange)="searchChanged($event)">
+      <ion-select-option value="bangalore">BANGALORE</ion-select-option>
+      <ion-select-option value="mumbai">MUMBAI</ion-select-option>
+      <ion-select-option value="chennai">CHENNAI</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-list>
+
+    <ion-item button *ngFor="let item of (results | async)">
+
+      <ion-label text-wrap>
+        <h3>{{ item.bank_name }}</h3>
+        <h3>{{ item.branch }}</h3>
+        {{ item.ifsc }}
+      </ion-label>
+
+    </ion-item>
+
+  </ion-list>
+
+</ion-content>

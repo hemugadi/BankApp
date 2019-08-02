@@ -12,7 +12,7 @@ export class BanksPage implements OnInit {
   
   results: Observable<any>;
   searchTerm: string = '';
-  type: SearchType = SearchType.bangalore;
+  type: SearchType = SearchType.BANGALORE;
 
   constructor(private bankService: BankService) { }
 

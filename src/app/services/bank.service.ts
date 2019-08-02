@@ -6,9 +6,9 @@ import { map } from 'rxjs/operators';
 
 // Typescript custom enum for search types (optional)
 export enum SearchType {
-  bangalore = 'BANGALORE',
-  mumbai = 'MUMBAI',
-  chennai = 'CHENNAI'
+  BANGALORE = 'BANGALORE',
+  MUMBAI = 'MUMBAI',
+  CHENNAI = 'CHENNAI'
 }
 
 @Injectable({
@@ -25,8 +25,6 @@ export class BankService {
   constructor(private http: HttpClient) { }
 
   searchData(title: string, type: SearchType): Observable<any> {
-    return this.http.get(`${this.url}?city=${type}`).pipe(
-      map(results => results['Search'])
-    );
+    return this.http.get(`${this.url}?city=${type}`);
   }
 }

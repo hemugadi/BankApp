@@ -10,17 +10,21 @@ import { Observable } from 'rxjs';
 })
 export class BanksPage implements OnInit {
   
-  results: Observable<any>;
+  results: any;
+  filters: any;
   searchTerm: string = '';
   type: SearchType = SearchType.BANGALORE;
 
   constructor(private bankService: BankService) { }
 
   ngOnInit() {
+    this.searchChanged()
   }
+
   searchChanged() {
     // Call our service function which returns an Observable
-    this.results = this.bankService.searchData(this.searchTerm, this.type);
+    this.results = this.bankService.searchData(this.type)
+    this.filters = this.results
   }
 
 }

@@ -7,10 +7,10 @@
 
 <ion-content>
 
-  <ion-searchbar [(ngModel)]="searchTerm" (ionChange)="searchChanged($event)"></ion-searchbar>
+  <ion-searchbar [(ngModel)]="searchTerm" (ionInput)="searchChanged($event)"></ion-searchbar>
 
   <ion-item>
-    <ion-label>Select Searchtype</ion-label>
+    <ion-label>Select City</ion-label>
     <ion-select [(ngModel)]="type" (ionChange)="searchChanged($event)">
       <ion-select-option value="BANGALORE">BANGALORE</ion-select-option>
       <ion-select-option value="MUMBAI">MUMBAI</ion-select-option>
@@ -20,7 +20,7 @@
 
   <ion-list>
 
-    <ion-item button *ngFor="let item of (results | async)">
+    <ion-item button *ngFor="let item of (filters | async)">
 
       <ion-label text-wrap>
         <h3>{{ item.bank_name }}</h3>

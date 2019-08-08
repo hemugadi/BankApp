@@ -24,7 +24,7 @@ export class BankService {
    */
   constructor(private http: HttpClient) { }
 
-  searchData(title: string, type: SearchType): Observable<any> {
+  searchData(type: SearchType): any{
     return this.http.get(`${this.url}?city=${type}`);
   }
 }

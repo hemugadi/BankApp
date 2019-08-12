@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { BankService, SearchType } from './../../services/bank.service';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 @Component({
   selector: 'app-banks',
@@ -24,7 +24,17 @@ export class BanksPage implements OnInit {
   searchChanged() {
     // Call our service function which returns an Observable
     this.results = this.bankService.searchData(this.type)
-    this.filters = this.results
+    const finalResults = [];
+    this.results.subscribe((val) => {
+      for (const bankDetails of val) {
+        if (bankDetails["bank_name"].toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+          bankDetails["branch"].toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+          bankDetails["ifsc"].toLowerCase().includes(this.searchTerm.toLowerCase())) {
+            finalResults.push(bankDetails);
+          }
+      }
+    });
+    this.filters = of(finalResults);
   }
 
 }
